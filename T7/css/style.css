@@ -1,0 +1,182 @@
+/*Footer Table */
+table #t1 {
+	border = none;
+}
+#t1 table, #t1 td, #t1 tr{
+	text-align:center;
+	border: none;
+	padding:1px;
+}
+
+/* nav bar*/
+nav {
+	position: relative;
+	width:100%;
+	z-index: 10;
+}
+
+nav ul {
+	height: 50px;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	font-size: 0;
+	list-style: none; 
+}
+
+nav ul li {
+	font-size: 15px;
+	padding: 0;
+	display: inline-block;
+}
+.navbar ul {
+	list-style-type: none;
+	font-family:Trebuchet MS; 
+	font-size: 1em;
+	margin: 0;
+	padding:0;
+	display-inline:block;
+	overflow: hidden;
+	background-color: red;
+	color: white;
+	text-align: center;
+	position: fixed;
+	top: 0;
+}
+
+.navbar li {
+	float:left;
+}
+
+.navbar li a {
+	display: inline-block;
+	float: center;
+ 	color: white;
+	text-align: center;
+	padding: 3px 7px;
+	text-decoration: none;
+}
+
+.navbar li a:hover {
+	background-color: white;
+	color: red;
+}
+nav ul li p {
+	height: 1rem;
+	line-height: 1rem;
+	margin: 0;
+	padding: 1rem 1rem; 
+}
+
+/* Header Sty;e */
+h1 {
+	background-color:white;
+	padding-top:30px;
+	width:100%;
+}
+
+body{
+	background-color:red;
+}
+	
+a{
+	color:white;
+};
+
+/* Style for the version at the bottom */
+footer {
+	bottom:0; 
+	position:fixed; 
+	left:0; 
+	width: 100%;
+	background-color:white;
+	color:red;
+	text-align:center;
+}
+
+.footer {
+	bottom:0; 
+	position:fixed; 
+	left:0; 
+	width: 100%;
+	background-color:white;
+	color:red;
+	text-align:center;
+	vertical-align:center;
+	font-size:15px;
+	font-family: Trebuchet MS;
+}
+
+/* Default paragraph style */
+p1{
+	color:White;
+	font-family: Trebuchet MS;
+	position: relative;
+	padding-top:20px;
+	font-size:20px;
+	text-align: center;
+}
+
+/* Style for table captions */
+p3{
+	color: White;
+	font-family: Trebuchet MS;
+	position: relative;
+	font-size: 24px;
+	font-weight: bold;
+	font-style: italic;
+}
+
+/* Style for table headers */
+p4{
+	color: White;
+	font-family: Trebuchet MS;
+	position: relative;
+	font-size: 19px;
+	font-weight: bold;
+}
+
+/* Style for table data */
+p5{
+	color: White;
+	font-family: Trebuchet MS;
+	position: relative;
+	font-size: 17px;
+}
+
+/* Table border */
+table, th, td {
+	border: 2px solid black;
+	border-collapse: collapse;
+	padding:10px;
+}
+
+/* Icons */
+.links {
+	list-style-type: none;
+	position: relative;
+	z-index:1;
+	font-size:20px;
+}
+
+.links li {
+	display: inline-block;
+	font-size: 30px;
+}
+
+.grow {
+	display: inline-block;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+	vertical-align: middle;
+	-moz-osx-font-smoothing: grayscale;
+	transition-duration: 0.1s;
+	transition-property: transform;
+}
+
+.grow:hover,
+.grow:focus,
+.grow:active {
+	transform: scale(1.5);
+}
+	
