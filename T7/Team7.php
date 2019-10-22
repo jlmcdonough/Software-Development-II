@@ -57,14 +57,9 @@ h3{text-align:right;
 <br>
 <br>
 
-<div class = "footer";>
-<center><table id = "t1">
-<tr>
-<td></td>
-<td>
-	<?php include 'included.php'; #included file contains the version number?> </td>
-	<td><ul style = "color:white; text-align:right; margin-right:5%;"><div class="grow"> <a href="https://github.com/jlmcdonough/Software-Development-II" target="_blank" style="color:red; font-size:25px;"><i class="fab fa-github-square"></i></a></div></ul>
-</td></tr></table></div>
+<div class = "footer">
+	<?php include 'included.php'; #included file contains the version number?>
+</div>
 
 
 
