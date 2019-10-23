@@ -8,4 +8,8 @@ For this project, we created a user (mike) with password (easysteps).  The table
 
 To replicate the project:
 CREATE DATABASE site_db;
+USE site_db;
 GRANT SELECT, INSERT, UPDATE ON site_db.* TO 'mike'@'localhost' IDENTIFIED BY 'easysteps';
+
+
+Project was done by Joseph McDonough, Matthew Parisi, and Chris Pellerito
