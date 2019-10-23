@@ -97,7 +97,10 @@ We tested connection and added a link to misc page - Team7_misc.php only allowed
  "Modified the team7_misc2.php file so that it would display the tables and all their attributes using a function as opposed to hardcoding everything."),
  
  ("0.1.5", '2019/10/20', "Joseph",
- "Added a style sheet for all styles.  Redid the website look.  Added buttons to top of all pages. ")
+ "Added a style sheet for all styles.  Redid the website look.  Added buttons to top of all pages. "),
+ 
+ ("0.1.6", '2019/10/23', "All",
+ "Edited style sheet to center the navbar.  Added an Admin Page link on the misc. page. Created 6 admin functions (check connection, show table definitions, display all change, building, item, and user table). Created new displaytables.php to display the tables and their contents.")
  
  ;   
 

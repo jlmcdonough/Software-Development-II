@@ -2,6 +2,7 @@
 VERSION: 0.1.2 10/7/19 - Created team7_misc2.php to show tables explanations
 VERSION: 0.1.4 10/18/19 - Modified the team7_misc2.php file so that it would display the tables and all their attributes using a function as opposed to hardcoding everything.
 VERSION: 0.1.5 10/20/19 - Updated the websites look.  Added buttons to all pages.
+VERSION: 0.1.6 10/23/19 - Removed old code that was commented out
 --->
 
 <!DOCTYPE html>
@@ -29,82 +30,12 @@ VERSION: 0.1.5 10/20/19 - Updated the websites look.  Added buttons to all pages
 	
 if(include("../../connect_db.php")) #does connect_db.php exists in right location?
 	{
+		$tables = array('7users','7buildings','7items','7change');	   
 
-/*	
-echo "<table border = 1>";
-	echo "<tr>";
-	echo "<th>Field</th>";
-	echo "<th>Type</th>";
-	echo "<th>Null</th>";
-	echo "<th>Default</th>";
-	echo "<th>Extra</th>";
-	echo "</tr>";
-	
-	
-	$q = 'EXPLAIN 7users';
-	$r = mysqli_query($dbc,$q);
-	
-	if ($r)
-		while ($row = mysqli_fetch_array($r, MYSQLI_NUM))
-			{echo '<tr><td>' .$row[0] .'</td> <td>'. $row[1]. '</td> <td>'
-						.$row[2] .'</td> <td>'. $row[3]. '</td> <td>'. $row[4]
-						.'</td></tr>';
-			}
-	else
-		{echo '<li>' .mysqli_error($dbc).'</li>';}
-	
-	 echo "</table>";
-echo '<p>     </p>';
-	
-echo "<table border = 1>";
-	echo "<tr>";
-	echo "<th>Field</th>";
-	echo "<th>Type</th>";
-	echo "<th>Null</th>";
-	echo "<th>Default</th>";
-	echo "</tr>";
-	
-	
-	$q = 'EXPLAIN 7items';
-	$r = mysqli_query($dbc,$q);
-	
-	if ($r)
-		while ($row = mysqli_fetch_array($r, MYSQLI_NUM))
-			{echo '<tr><td>' .$row[0] .'</td> <td>'. $row[1]. '</td> <td>'
-						.$row[2] .'</td> <td>'. $row[3]. '</td></tr>';
-			}
-	else
-		{echo '<li>' .mysqli_error($dbc).'</li>';}
-	
-	echo "</table>";
-echo '<p>     </p>';
-echo "<table border = 1>";
-	echo "<tr>";
-	echo "<th>Field</th>";
-	echo "<th>Type</th>";
-	echo "<th>Null</th>";
-	echo "<th>Default</th>";
-	echo "</tr>";
-	
-	
-	$q = 'EXPLAIN 7buildings';
-	$r = mysqli_query($dbc,$q);
-	
-	if ($r)
-		while ($row = mysqli_fetch_array($r, MYSQLI_NUM))
-			{echo '<tr><td>' .$row[0] .'</td> <td>'. $row[1]. '</td> <td>'
-						.$row[2] .'</td> <td>'. $row[3]. '</td> </tr>';
-			}
-	else
-		{echo '<li>' .mysqli_error($dbc).'</li>';}
-	
-	echo "</table>"; */
-	
-	$tables = array('7users','7buildings','7items','7change');	   
-
-for($i = 0; $i < count($tables);$i++){
-	display_table($tables[$i], $dbc);
-} #for loop 
+		for($i = 0; $i < count($tables);$i++)
+		{
+			display_table($tables[$i], $dbc);
+		} #for loop 
 	} #if statement
 else #if no connect_db file
 {
