@@ -22,6 +22,9 @@ VERSION: 0.1.6 Creation of file.  Displays the contents of each table upon click
 	</nav>
 </div>
 
+</head>
+
+
 <?php
 
 	include("../../connect_db.php");
@@ -110,8 +113,18 @@ VERSION: 0.1.6 Creation of file.  Displays the contents of each table upon click
 
 <br>
 <br>
-<br>
 
+<body>
+
+<a href = "team7_admin.php" class="button button_back">BACK</a>
+
+</body>
+
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class = "footer">
 	<?php include 'included.php'; #included file contains the version number?>
 </div>

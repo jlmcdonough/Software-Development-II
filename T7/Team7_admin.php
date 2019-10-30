@@ -24,12 +24,21 @@ VERSION: 0.1.6 Created the admins page. Added 6 links to display administrator i
 
 </head>
 <body>
-<a href = "team7_connection.php?">Check Connection</a> <br>
-<a href = "team7_misc2.php">Display Tables</a> <br>
-<a href="DisplayTables.php?Table=7change">Display Change log</a> <br>
-<a href="DisplayTables.php?Table=7buildings">Display Buildings</a> <br>
-<a href="DisplayTables.php?Table=7items">Display Items</a> <br>
-<a href="DisplayTables.php?Table=7users">Display Users</a> <br>
+
+<center>
+<br>
+<a href = "team7_connection.php?" class="button">Check Connection</a> 
+<a href = "team7_misc2.php?" class="button">Display Tables</a> <br><br><br><br><br>
+<a href="DisplayTables.php?Table=7change" class="button">Display Change Log</a> 
+<a href="DisplayTables.php?Table=7buildings" class="button">Display Buildings</a>  
+<a href="DisplayTables.php?Table=7items" class="button">Display Items</a>  
+<a href="DisplayTables.php?Table=7users" class="button">Display Users</a> 
+</center>
+
+</body>
+
+<br>
+<br>
 
 <div class = "footer">
 	<?php include 'included.php'; #included file contains the version number?>
