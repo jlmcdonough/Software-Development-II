@@ -5,6 +5,8 @@ VERSION: 0.1.2 10/7/19 - Updated change log
 VERSION: 0.1.3 10/14/19 - Created 7change table and inserted values.  Updated change log
 VERSION: 0.1.4 10/18/19 - 0.1.4 - Updated change log
 VERSION: 0.1.5 10/20/19 - 0.1.5 - Updated change log
+VERSION: 0.1.6 10/23/19 - 0.1.6 - Updated change log
+VERSION: 0.1.7 11/06/19 - 0.1.7 - Updated change log, changed fields for buildings table
 */
 
 DROP TABLE 7users;
@@ -37,7 +39,8 @@ INSERT INTO 7users VALUES(33333333, "Matthew", "Parisi", "matthew.parisi1@marist
 CREATE TABLE if not exists 7buildings(
 id int AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(64) NOT NULL,
-location SET("inside", "outside")
+minFloor int,
+maxFloor int
 );
 
 INSERT INTO 7buildings(name)
@@ -84,7 +87,7 @@ VALUES("0.1.0",'2019/10/1', "All", "Created all pages- Team7_misc.php, Team7.php
 We tested connection and added a link to misc page - Team7_misc.php only allowed in if connection was aprovced also
  show list and database as well as link all pages"), 
  
- ("0.1.1", '2019/10/3', "Matt and Joeseph", "UPDATED INFO on landing page - 
+ ("0.1.1", '2019/10/3', "Matt and Joseph", "UPDATED INFO on landing page - 
  Added Comments IN team7_misc.php we restored the connection to the database and got all the back buttons working correctly"), 
  
 ("0.1.2", '2019/10/7', "All", "Created Contact Info, added a show tables link that shows the current data in the tables
@@ -100,7 +103,10 @@ We tested connection and added a link to misc page - Team7_misc.php only allowed
  "Added a style sheet for all styles.  Redid the website look.  Added buttons to top of all pages. "),
  
  ("0.1.6", '2019/10/23', "All",
- "Edited style sheet to center the navbar.  Added an Admin Page link on the misc. page. Created 6 admin functions (check connection, show table definitions, display all change, building, item, and user table). Created new displaytables.php to display the tables and their contents.")
+ "Edited style sheet to center the navbar.  Added an Admin Page link on the misc. page. Created 6 admin functions (check connection, show table definitions, display all change, building, item, and user table). Created new displaytables.php to display the tables and their contents."),
+ 
+ ("0.1.7", '2019/11/06', "All",
+ "Added 3 new php files (7buildingsTableInsert, 7itemsTableInsert, 7usersTableInsert) that allow for the database to be modified via forms.  Created new button on header to report lost items, created two buttons on admin page to get to 7buildings... and 7users...")
  
  ;   
 

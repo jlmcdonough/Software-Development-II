@@ -5,6 +5,8 @@ VERSION: 0.1.2 10/7/19 - Created Contact Info, added a show tables link that sho
 VERSION: 0.1.3 10/14/19 - Created the changes table and added all changes that we have made.
 VERSION: 0.1.4 10/18/19 - Modified the team7_misc2.php file so that it would display the tables and all their attributes using a function as opposed to hardcoding everything.
 VERSION: 0.1.5 10/20/19 - Updated the websites look.  Added buttons to all pages.
+VERSION: 0.1.6 10/23/19 - Created the admins page. Added 6 links to display administrator information. Created DisplayTables.php to display tables on admin page
+VERSION: 0.1.7 11/6/19 - Added new link in header to report an item. Added links in admin page to add a user or building. 
 --->
 
 <!DOCTYPE html>

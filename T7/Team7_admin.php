@@ -1,6 +1,6 @@
 <!---
 VERSION: 0.1.6 Created the admins page. Added 6 links to display administrator information.
-
+VERSION: 0.1.7 Added buttons to add users or buildings
 --->
 <!DOCTYPE html>
 <html>
@@ -32,7 +32,9 @@ VERSION: 0.1.6 Created the admins page. Added 6 links to display administrator i
 <a href="DisplayTables.php?Table=7change" class="button">Display Change Log</a> 
 <a href="DisplayTables.php?Table=7buildings" class="button">Display Buildings</a>  
 <a href="DisplayTables.php?Table=7items" class="button">Display Items</a>  
-<a href="DisplayTables.php?Table=7users" class="button">Display Users</a> 
+<a href="DisplayTables.php?Table=7users" class="button">Display Users</a> <br><br><br><br><br>
+<a href = "7usersTableInsert.php?" class="button">Add User</a> 
+<a href = "7buildingsTableInsert.php?" class="button">Add Building</a> 
 </center>
 
 </body>

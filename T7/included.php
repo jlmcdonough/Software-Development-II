@@ -1,3 +1,3 @@
 <?php
-echo "<p>Version 0.1.6 - Last Updated Oct. 23 </p>";
+echo "<p>Version 0.1.7 - Last Updated Nov. 6 </p>";
 ?>
