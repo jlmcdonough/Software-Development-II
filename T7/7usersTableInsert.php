@@ -129,7 +129,7 @@ If (($_SERVER['REQUEST_METHOD'] != 'POST')  OR ($errormessage<>""))
 	echo "</center>";
  }
  
- 
+ echo"<center>";
 if($errormessage == "")
 {
 $q = "INSERT INTO 7users (cwid, first_name, last_name, email, password, phone)
@@ -137,11 +137,12 @@ $q = "INSERT INTO 7users (cwid, first_name, last_name, email, password, phone)
 $r = mysqli_query($dbc, $q ); 
 if ($r == false) 
 { #echo "DBC Error " . mysqli_error($dbc); 
-  echo "Unable to insert into the table. Contact support!"; die; 
+  echo "<p1>Unable to insert into the table. Contact support!</p1>"; die; 
 }
 else
-	echo "<br> User Table updated;$cwid $fname $lname $email $pass $phone!<br><br>";
+	echo "<br> <p1>User Table updated;$cwid $fname $lname $email $pass $phone!</p1><br><br>";
 } 
+ echo"</center>";
 echo "<center><br> <p7>by Matthew Parisi</p7><br>";
 
 echo "<br>";

@@ -88,7 +88,7 @@ if ($errormessage!="")
 if (($_SERVER['REQUEST_METHOD'] != 'POST') or ($errormessage<>"")){	
 echo "<center>";
 echo "<h2> Form for table 7items  </h2>";
-echo "<form action = '7userstableinsert.php' method = 'POST'>";
+echo "<form action = '7itemsTableInsert.php' method = 'POST'>";
 echo "<fieldset style='background-color:rgb(124,124,128);'>";
 echo "<p1>CWID <br> <input type = 'text' name = 'CWID' value = '$cwid' maxlength = 8 .$autofocus[1]></p1>";
 
@@ -177,12 +177,13 @@ echo "</form>";
 
 #This is where we handle the form
 else{
-	echo "Inside the handler code!";
-	echo " <br> There are ".count($_POST)." elements in the \$_POST array";
+	echo "<center>";
+	echo "<p1>Inside the handler code!</p1>";
+	echo " <br> <p1>There are ".count($_POST)." elements in the \$_POST array</p1>";
 	echo "<br>";
 	
 	foreach($_POST as $ThisKey){
-		echo "<br> $ThisKey";
+		echo "<br> <p1>$ThisKey</p1>";
 	}
 	
 	$q  = "INSERT into 7items (cwid, item_type, description, user_status, date_lost, lost_location)
@@ -190,17 +191,17 @@ else{
 	$r = mysqli_query($dbc, $q);
 	
 	if ($r == false){
-		echo "DBC error " .mysqli_error($dbc);
-		echo "Unable to insert record into table"; die;
+		echo "<p1>DBC error </p1>" .mysqli_error($dbc);
+		echo "<p1>Unable to insert record into table</p1>"; die;
 	}
 	
-	echo "<br> User table updated; added $cwid, $item_type, $description, $status, $date_lost, $location";
+	echo "<br><p1> User table updated; added $cwid, $item_type, $description, $status, $date_lost, $location</p1>";
 }
 
 echo "<br>";
 echo "<br>";
 echo "<p7>This page was created by Chris Pellerito</p7>";
-
+echo "</center>";
 echo "<br>";
 echo "<br>";
 echo "<br>";
