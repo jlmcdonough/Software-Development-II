@@ -1,7 +1,21 @@
+<?php
+session_start();
+	if (isset($_SESSION["loginstatus"]))
+		{ 
+			$loginstatus=$_SESSION["loginstatus"];
+		}
+	else 
+		{
+			$loginstatus="";
+		}
+?>
+
 <!---
 VERSION: 0.1.6 Created the admins page. Added 6 links to display administrator information.
 VERSION: 0.1.7 Added buttons to add users or buildings
+VERSION: 0.1.8 Added login such that a user must be logged in to see admin functions
 --->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,21 +37,33 @@ VERSION: 0.1.7 Added buttons to add users or buildings
 </div>
 
 </head>
-<body>
 
-<center>
-<br>
-<a href = "team7_connection.php?" class="button">Check Connection</a> 
-<a href = "team7_misc2.php?" class="button">Display Tables</a> <br><br><br><br><br>
-<a href="DisplayTables.php?Table=7change" class="button">Display Change Log</a> 
-<a href="DisplayTables.php?Table=7buildings" class="button">Display Buildings</a>  
-<a href="DisplayTables.php?Table=7items" class="button">Display Items</a>  
-<a href="DisplayTables.php?Table=7users" class="button">Display Users</a> <br><br><br><br><br>
-<a href = "7usersTableInsert.php?" class="button">Add User</a> 
-<a href = "7buildingsTableInsert.php?" class="button">Add Building</a> 
-</center>
 
-</body>
+<?php
+echo'<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">';
+
+if($loginstatus == 'NOT LOGGED IN')
+	{
+		echo'<center><p1>PLEASE LOGIN TO VIEW   </p1><div class="grow"><a href="team7_login.php" target="_blank" style="color:white; font-size:25px;"><i class="fas fa-user-lock"></i></a></div>';
+	}
+else if($loginstatus == 'LOGGED IN')
+	{
+		echo'<center>';
+		echo'<br>';
+		echo'<a href = "team7_connection.php?" class="button">Check Connection</a>'; 
+		echo'<a href = "team7_misc2.php?" class="button">Display Tables</a> <br><br><br><br><br>';
+		echo'<a href="DisplayTables.php?Table=7change" class="button">Display Change Log</a> ';
+		echo'<a href="DisplayTables.php?Table=7buildings" class="button">Display Buildings</a>  ';
+		echo'<a href="DisplayTables.php?Table=7items" class="button">Display Items</a> '; 
+		echo'<a href="DisplayTables.php?Table=7users" class="button">Display Users</a> <br><br><br><br><br>';
+		echo'<a href = "7usersTableInsert.php?" class="button">Add User</a> ';
+		echo'<a href = "7buildingsTableInsert.php?" class="button">Add Building</a> ';
+		echo'</center>';
+	}
+
+
+?>
+
 
 <br>
 <br>

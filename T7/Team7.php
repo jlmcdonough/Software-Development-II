@@ -7,6 +7,7 @@ VERSION: 0.1.4 10/18/19 - Modified the team7_misc2.php file so that it would dis
 VERSION: 0.1.5 10/20/19 - Updated the websites look.  Added buttons to all pages.
 VERSION: 0.1.6 10/23/19 - Created the admins page. Added 6 links to display administrator information. Created DisplayTables.php to display tables on admin page
 VERSION: 0.1.7 11/6/19 - Added new link in header to report an item. Added links in admin page to add a user or building. 
+VERSION: 0.1.8 11/27/19 - Added team7_login.php and team7_logout.php such that admins can log in or out.  Adjusted team7_admin.php so that an admin has to be logged in to view the functions available.  Added sign in/out option to header
 --->
 
 <!DOCTYPE html>
@@ -46,12 +47,19 @@ h3{text-align:right;
 <p1><center>FoxNFound is a non profit focused on returning lost items to students in need and saving the day when you lose your keys in class</p1>
 </div>
 
-<div style = "padding-top:200px";>
+<br>
+<br>
+<br>
+
+<center><p1> Can view our code here   </p1><div class="grow"><a href="https://github.com/jlmcdonough/Software-Development-II" target="_blank" style="color:white; font-size:30px;"><i class="fab fa-github-square"></i></a></div>
+
+
+<div style = "padding-top:100px";>
 <p1><center>CONTACT INFO<br><br>
   Matthew Parisi - 9142824562<br>
   Chris Pellerito - 9175543044<br>
   Joseph McDonough - 9735088914<br>
-  Email Us <div class="grow"><a href="mailto:Joseph.McDonough1@marist.edu,Matthew.Parisi1@marist.edu,Christopher.Pellerito1@marist.edu;?Subject=FoxNFound" target="_blank" style="color:white"> <i class="fas fa-envelope"></i></a></div></p1>
+  Email Us   <div class="grow"><a href="mailto:Joseph.McDonough1@marist.edu,Matthew.Parisi1@marist.edu,Christopher.Pellerito1@marist.edu;?Subject=FoxNFound" target="_blank" style="color:white"> <i class="fas fa-envelope"></i></a></div></p1>
  </div>
 
 <br>
