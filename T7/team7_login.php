@@ -1,10 +1,12 @@
 <?php
 session_start();
+ob_start();
 ?>
 
 <!---
-VERSION: 0.1.8 Created page so that admin's can log in
-VERSION: 0.1.9 Removed warning messages.  Hashed passwords and changed query to check for unhashed or hashed passwords.
+VERSION: 0.1.8 11/30/19 - Created page so that admin's can log in
+VERSION: 0.1.9 11/30/19 - Removed warning messages.  Hashed passwords and changed query to check for unhashed or hashed passwords.
+VERSION: 0.1.12 12/1/19 - Set email as cookie.  Changed password field from text to password
 --->
 
 <!DOCTYPE html>
@@ -37,7 +39,12 @@ VERSION: 0.1.9 Removed warning messages.  Hashed passwords and changed query to 
 	if (isset($_POST['email']))
 		{
 			$email=strtolower(trim($_POST['email']));
-		} 		
+		} 	
+	elseif(isset ($_COOKIE['email']))
+		{
+			$email = $_COOKIE['email'];
+		}
+			
 	if (isset($_POST['password']))
 		{
 			$password=$_POST['password'];
@@ -62,13 +69,12 @@ If (  ($_SERVER['REQUEST_METHOD'] != 'POST')    or  ($errormessage != "") )
 		echo "<center>";
 		echo "<form action='team7_login.php' method='POST'>"; 
 		echo "<fieldset style='background-color:rgb(124,124,128);'>";
-		echo "<fieldset>";
 		echo "<p1>EMAIL<br><input type='text' name='email' value='$email' ></p1>";
 		
 		echo "<br>";
 		echo "<br>";
 		
-		echo "<p1>PASSWORD<br><input type='text' name='password' value='$password' ></p1>";
+		echo "<p1>PASSWORD<br><input type='password' name='password' value='$password' ></p1>";
 		
 		echo "<br>";
 		echo "<br>";
@@ -93,6 +99,7 @@ else
 		if (mysqli_num_rows($r) > 0)     #count # of matches
 				{
 					$_SESSION["loginstatus"]="LOGGED IN";
+					setcookie("email", $email);
 					$link_address = "team7_admin.php";
 					echo '<a href="'.$link_address.'">Successful login. Continue to admin page</a>';
 				} 
