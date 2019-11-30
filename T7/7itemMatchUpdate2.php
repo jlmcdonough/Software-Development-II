@@ -110,7 +110,7 @@ else if($loginstatus == 'LOGGED IN')
 	echo"<br>";
 	
 	echo'<a href = "7doMatch.php" class="button button_back">MATCH</a>';
-	echo'<a href = "team7_admin.php" class="button button_back">BACK</a>';
+	echo'<a href = "7itemMatchUpdate.php" class="button button_back">BACK</a>';
 	echo'<a href = "7itemMatch.php" class="button button_back">CANCEL</a>';
 	
 	echo'<br>';

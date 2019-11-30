@@ -105,7 +105,7 @@ else if($loginstatus == 'LOGGED IN')
 	{
 		$column = array_keys($row);
 		$columnCount = count($column);
-		for($i = 0; $i<$columnCount; $i++)
+		for($i = 0; $i<$columnCount-2; $i++)
 		{
 			echo '<td><p5>'.$row[$i].'</p5></td>';
 		}
