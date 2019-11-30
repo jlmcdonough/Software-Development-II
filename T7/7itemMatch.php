@@ -1,9 +1,18 @@
 <?php
 	session_start();
+	if (isset($_SESSION["loginstatus"]))
+		{ 
+			$loginstatus=$_SESSION["loginstatus"];
+		}
+	else 
+		{
+			$loginstatus="";
+		}
 ?>
 
 <!---
-VERSION: 0.1.10 Creation of file.  This file displays the items and is where the items to match are chosen.
+VERSION: 0.1.10 11/30/19 - Creation of file.  This file displays the items and is where the items to match are chosen.
+VERSION: 0.1.11 11/30/19 - locked behind admin access
 --->
 <!DOCTYPE html>
 <html>
@@ -28,6 +37,15 @@ VERSION: 0.1.10 Creation of file.  This file displays the items and is where the
 </head>
 
 <?php
+
+echo'<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">';
+
+if($loginstatus == 'NOT LOGGED IN')
+	{
+		echo'<center><p1>PLEASE LOGIN TO VIEW   </p1><div class="grow"><a href="team7_login.php" target="_blank" style="color:white; font-size:25px;"><i class="fas fa-user-lock"></i></a></div>';
+	}
+else if($loginstatus == 'LOGGED IN')
+	{
 	$_SESSION["lostID1"]="-999";
 	
 	include ("..\..\connect_db.php");
@@ -62,16 +80,14 @@ VERSION: 0.1.10 Creation of file.  This file displays the items and is where the
 	}
 	echo"</table>";
 
+	echo'<br>';
+	echo'<br>';
+
+	echo'<a href = "team7_admin.php" class="button button_back">BACK</a>';
+	}
+
 ?>
 
-<br>
-<br>
-
-<body>
-
-<a href = "team7_admin.php" class="button button_back">BACK</a>
-
-</body>
 
 <br>
 <br>

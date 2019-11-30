@@ -21,7 +21,8 @@
 ?>
 
 <!---
-VERSION: 0.1.10 Creation of file.  This file gets all the items in the query besides the previously selected one for the admin to match
+VERSION: 0.1.10 11/30/19 -  Creation of file.  This file gets all the items in the query besides the previously selected one for the admin to match
+VERSION: 0.1.11 11/30/19 - lock behind admin access
 --->
 <!DOCTYPE html>
 <html>
