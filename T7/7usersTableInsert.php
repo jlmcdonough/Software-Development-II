@@ -1,6 +1,19 @@
+<?php
+session_start();
+	if (isset($_SESSION["loginstatus"]))
+		{ 
+			$loginstatus=$_SESSION["loginstatus"];
+		}
+	else 
+		{
+			$loginstatus="";
+		}
+?>
+
 <!-- 
-VERSION: 0.1.7 - Creation of file. Displays form that allows new users to be added to database
-VERSION: 0.1.9 - hashed passwords and added that password to database. Used algorithm SHA256.
+VERSION: 0.1.7 11/6/19 - Creation of file. Displays form that allows new users to be added to database
+VERSION: 0.1.9 11/29/19 - hashed passwords and added that password to database. Used algorithm SHA256.
+VERSION: 0.1.11 11/30/19- locked behind admin access
 -->
 
 <!DOCTYPE html>
@@ -28,6 +41,14 @@ VERSION: 0.1.9 - hashed passwords and added that password to database. Used algo
 <body>
 <?php
 
+echo'<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">';
+
+if($loginstatus == 'NOT LOGGED IN')
+	{
+		echo'<center><p1>PLEASE LOGIN TO VIEW   </p1><div class="grow"><a href="team7_login.php" target="_blank" style="color:white; font-size:25px;"><i class="fas fa-user-lock"></i></a></div>';
+	}
+else if($loginstatus == 'LOGGED IN')
+	{
 	error_reporting(0);
 	
 	#connect to database
@@ -143,17 +164,26 @@ if ($r == false)
   echo "<p1>Unable to insert into the table. Contact support!</p1>"; die; 
 }
 else
-	echo "<br> <p1>User Table updated;$cwid $fname $lname $email $hashedpassword $phone!</p1><br><br>";
+	echo "<br> <p1>User Table updated;$cwid $fname $lname $email $hashedpassword $phone!</p1>";
 } 
  echo"</center>";
-echo "<center><br> <p7>by Matthew Parisi</p7><br>";
+echo "<center><br> <p7>by Matthew Parisi</p7>";
 
 echo "<br>";
 echo "<br>";
-echo "<br>";
-echo "<br>";
+
+
+
+	echo'<a href = "team7_admin.php" class="button button_back">BACK</a>';
+
+	}
 
 ?>
+
+<br>
+<br>
+<br>
+<br>
 
 <div class = "footer">
 	<?php include 'included.php'; #included file contains the version number?>
