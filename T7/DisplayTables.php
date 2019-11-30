@@ -1,6 +1,6 @@
 <!---
-VERSION: 0.1.6 Creation of file.  Displays the contents of each table upon clicking on from admin page
-
+VERSION: 0.1.6 10/23/19 - Creation of file.  Displays the contents of each table upon clicking on from admin page
+VERSION: 0.1.11 11/29/19 - Locked behind admin page
 --->
 <!DOCTYPE html>
 <html>
@@ -27,6 +27,14 @@ VERSION: 0.1.6 Creation of file.  Displays the contents of each table upon click
 
 <?php
 
+echo'<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">';
+
+if($loginstatus == 'NOT LOGGED IN')
+	{
+		echo'<center><p1>PLEASE LOGIN TO VIEW   </p1><div class="grow"><a href="team7_login.php" target="_blank" style="color:white; font-size:25px;"><i class="fas fa-user-lock"></i></a></div>';
+	}
+else if($loginstatus == 'LOGGED IN')
+	{
 	include("../../connect_db.php");
 	$PassedArg = $_GET["Table"];
 	$matchedQuery = FALSE;
@@ -70,16 +78,14 @@ VERSION: 0.1.6 Creation of file.  Displays the contents of each table upon click
 	}
 	echo"</table>";
 	
+	echo'<br>';
+	echo'<br>';
+
+	echo'<a href = "team7_admin.php" class="button button_back">BACK</a>';
+	}
+	
 ?>
 
-<br>
-<br>
-
-<body>
-
-<a href = "team7_admin.php" class="button button_back">BACK</a>
-
-</body>
 
 <br>
 <br>
