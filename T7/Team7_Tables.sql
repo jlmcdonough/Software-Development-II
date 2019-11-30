@@ -10,6 +10,7 @@ VERSION: 0.1.7 11/06/19 - 0.1.7 - Updated change log, changed fields for buildin
 VERSION: 0.1.8 11/27/19 - 0.1.8 - Updated change log
 VERSION: 0.1.9 11/29/19 - 0.1.9 - Updated change log, changed char legnth for passwords in user table for hashed passwords
 VERSION: 0.1.10 11/30/19 - 0.1.10 - Updated change log.  Added matchID and match_time to items.
+VERSION: 0.1.11 11/30/19 - 0.1.11 - Updated change log.
 */
 
 DROP TABLE 7users;
@@ -122,6 +123,9 @@ We tested connection and added a link to misc page - Team7_misc.php only allowed
  "Removed warning messages from team7_login.php and hashed passwords and changed query to check for unhashed or hashed passwords.  Hashed passwords before entering into table in 7usersTableInsert.php.  ") ,
  
  ("0.1.10", '2019/11/30', "Joseph",
- "RENAMED team7_misc2.php to team7_showTables.php.  Added 7itemMatch.php, 7itemMatchUpdate.php, 7itemMatchUpdate2.php, and 7doMatch.php.  Updated style sheet. showTables and Functional Diagram from header to admin page.  Added match items button to admin page.  With addition of four new files, admin can match two items together and the items table gets updated accordingly.") 
+ "RENAMED team7_misc2.php to team7_showTables.php.  Added 7itemMatch.php, 7itemMatchUpdate.php, 7itemMatchUpdate2.php, and 7doMatch.php.  Updated style sheet. showTables and Functional Diagram from header to admin page.  Added match items button to admin page.  With addition of four new files, admin can match two items together and the items table gets updated accordingly."), 
+ 
+ ("0.1.11", '2019/11/30', "Joseph",
+ "Locked all admin pages behind admin access.  Those users not logged in cannot access any of its contents.")
  ;   
 
