@@ -1,7 +1,20 @@
+<?php
+session_start();
+	if (isset($_SESSION["loginstatus"]))
+		{ 
+			$loginstatus=$_SESSION["loginstatus"];
+		}
+	else 
+		{
+			$loginstatus="";
+		}
+?>
+
 <!---
 VERSION: 0.1.0 10/1/19 - Created team7_connection.php.  Tested connection and added link to misc page
 VERSION: 0.1.5 10/20/19 - Modified to match new CSS file and included header. Also added error message if connection failed
 VERSION: 0.1.10 11/30/19 - Moved to admin page and therefore added back button to admin page.
+VERSION: 0.1.11 11/30/19 - Locked behind admin login
 --->
 
 <!DOCTYPE html>
@@ -27,6 +40,15 @@ VERSION: 0.1.10 11/30/19 - Moved to admin page and therefore added back button t
 <body>
 <!---connecting to the mysql server--->
 <?php
+
+echo'<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">';
+
+if($loginstatus == 'NOT LOGGED IN')
+	{
+		echo'<center><p1>PLEASE LOGIN TO VIEW   </p1><div class="grow"><a href="team7_login.php" target="_blank" style="color:white; font-size:25px;"><i class="fas fa-user-lock"></i></a></div>';
+	}
+else if($loginstatus == 'LOGGED IN')
+	{
 	echo "<p1 style = font-size:16px> <center> Attempting to connect to the database... </p1>";
 	echo "<br>";
 	
@@ -56,18 +78,15 @@ VERSION: 0.1.10 11/30/19 - Moved to admin page and therefore added back button t
 		echo "<p1 style = font-size:50px><center> Connection not possible!  </p1>";
 	}
 	
+	echo'<br>';
+	echo'<br>';
+
+	echo'<a href = "team7_admin.php" class="button button_back">BACK</a>';
+	}
 ?>
 
 </body>
 
-<br>
-<br>
-
-<body>
-
-<a href = "team7_admin.php" class="button button_back">BACK</a>
-
-</body>
 
 <div class = "footer">
 	<?php include 'included.php'; #included file contains the version number?>
