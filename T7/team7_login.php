@@ -4,6 +4,7 @@ session_start();
 
 <!---
 VERSION: 0.1.8 Created page so that admin's can log in
+VERSION: 0.1.9 Removed warning messages.  Hashed passwords and changed query to check for unhashed or hashed passwords.
 --->
 
 <!DOCTYPE html>
@@ -28,6 +29,7 @@ VERSION: 0.1.8 Created page so that admin's can log in
 
 <?php
 	$_SESSION["loginstatus"]="NOT LOGGED IN"; 
+	error_reporting(0);
 
 
 # get passed variables and check for errors 
@@ -79,11 +81,13 @@ If (  ($_SERVER['REQUEST_METHOD'] != 'POST')    or  ($errormessage != "") )
 #Process the form here 
 else
 	{  
+		$hashedpassword = hash(SHA256, "$password");
 		include ("..\..\connect_db.php");
 		$q = "SELECT 7users.email, 7users.password 
 			  FROM 7users 
 			  WHERE email = '$email'
-			  AND password = '$password'";
+			  AND (password = '$password'
+					OR password = '$hashedpassword')";
 		#echo("$q");
 		$r = mysqli_query($dbc, $q ); 
 		if (mysqli_num_rows($r) > 0)     #count # of matches

@@ -7,6 +7,8 @@ VERSION: 0.1.4 10/18/19 - 0.1.4 - Updated change log
 VERSION: 0.1.5 10/20/19 - 0.1.5 - Updated change log
 VERSION: 0.1.6 10/23/19 - 0.1.6 - Updated change log
 VERSION: 0.1.7 11/06/19 - 0.1.7 - Updated change log, changed fields for buildings table
+VERSION: 0.1.8 11/27/19 - 0.1.8 - Updated change log
+VERSION: 0.1.9 11/29/19 - 0.1.9 - Updated change log, changed char legnth for passwords in user table for hashed passwords
 */
 
 DROP TABLE 7users;
@@ -19,7 +21,7 @@ cwid DECIMAL(8,0) PRIMARY KEY,
 first_name VARCHAR(16) NOT NULL,
 last_name VARCHAR(24) NOT NULL,
 email VARCHAR(64) NOT NULL,
-password VARCHAR(24) NOT NULL,
+password VARCHAR(64) NOT NULL,
 phone DECIMAL(10,0) NOT NULL,
 reg_id TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -58,6 +60,8 @@ CREATE TABLE if not exists 7items(
 lost_id INT AUTO_INCREMENT PRIMARY KEY,
 cwid DECIMAL(8,0) NOT NULL,	 /* this is the link to the users table */
 lost_location VARCHAR(64),    /*This is to link the items table to the buildings table*/
+insideOrOutside VARCHAR(10),
+floorNumber INTEGER,
 item_type SET("Clothing", "Electronics", "Books", "Wallets/Keys/ID", "Misc.", "Rideables") NOT NULL,
 description TEXT NOT NULL,
 user_status SET("Loser", "Finder") NOT NULL,
@@ -106,7 +110,13 @@ We tested connection and added a link to misc page - Team7_misc.php only allowed
  "Edited style sheet to center the navbar.  Added an Admin Page link on the misc. page. Created 6 admin functions (check connection, show table definitions, display all change, building, item, and user table). Created new displaytables.php to display the tables and their contents."),
  
  ("0.1.7", '2019/11/06', "All",
- "Added 3 new php files (7buildingsTableInsert, 7itemsTableInsert, 7usersTableInsert) that allow for the database to be modified via forms.  Created new button on header to report lost items, created two buttons on admin page to get to 7buildings... and 7users...")
+ "Added 3 new php files (7buildingsTableInsert, 7itemsTableInsert, 7usersTableInsert) that allow for the database to be modified via forms.  Created new button on header to report lost items, created two buttons on admin page to get to 7buildings... and 7users..."),
+ 
+ ("0.1.8", '2019/11/27', "Joseph",
+ "Added team7_login.php and team7_logout.php such that admins can log in or out.  Adjusted team7_admin.php so that an admin has to be logged in to view the functions available.  Added sign in/out option to header."), 
+  
+ ("0.1.9", '2019/11/29', "Joseph",
+ "Removed warning messages from team7_login.php and hashed passwords and changed query to check for unhashed or hashed passwords.  Hashed passwords before entering into table in 7usersTableInsert.php.  ") 
  
  ;   
 

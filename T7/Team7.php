@@ -8,6 +8,7 @@ VERSION: 0.1.5 10/20/19 - Updated the websites look.  Added buttons to all pages
 VERSION: 0.1.6 10/23/19 - Created the admins page. Added 6 links to display administrator information. Created DisplayTables.php to display tables on admin page
 VERSION: 0.1.7 11/6/19 - Added new link in header to report an item. Added links in admin page to add a user or building. 
 VERSION: 0.1.8 11/27/19 - Added team7_login.php and team7_logout.php such that admins can log in or out.  Adjusted team7_admin.php so that an admin has to be logged in to view the functions available.  Added sign in/out option to header
+VERSION: 0.1.9 11/29/19 - Removed warning messages from team7_login.php and hashed passwords and changed query to check for unhashed or hashed passwords.  Hashed passwords before entering into table in 7usersTableInsert.php. 
 --->
 
 <!DOCTYPE html>

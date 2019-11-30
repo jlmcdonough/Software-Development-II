@@ -1,5 +1,6 @@
 <!-- 
 VERSION: 0.1.7 - Creation of file. Displays form that allows new users to be added to database
+VERSION: 0.1.9 - hashed passwords and added that password to database. Used algorithm SHA256.
 -->
 
 <!DOCTYPE html>
@@ -132,15 +133,17 @@ If (($_SERVER['REQUEST_METHOD'] != 'POST')  OR ($errormessage<>""))
  echo"<center>";
 if($errormessage == "")
 {
+	$hashedpassword = hash(SHA256, $pass);
+	echo"$hashedpassword";
 $q = "INSERT INTO 7users (cwid, first_name, last_name, email, password, phone)
-      VALUES ('$cwid','$fname','$lname','$email','$pass','$phone')";
+      VALUES ('$cwid','$fname','$lname','$email','$hashedpassword','$phone')";
 $r = mysqli_query($dbc, $q ); 
 if ($r == false) 
 { #echo "DBC Error " . mysqli_error($dbc); 
   echo "<p1>Unable to insert into the table. Contact support!</p1>"; die; 
 }
 else
-	echo "<br> <p1>User Table updated;$cwid $fname $lname $email $pass $phone!</p1><br><br>";
+	echo "<br> <p1>User Table updated;$cwid $fname $lname $email $hashedpassword $phone!</p1><br><br>";
 } 
  echo"</center>";
 echo "<center><br> <p7>by Matthew Parisi</p7><br>";
