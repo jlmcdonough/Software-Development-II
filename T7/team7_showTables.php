@@ -3,6 +3,7 @@ VERSION: 0.1.2 10/7/19 - Created team7_misc2.php to show tables explanations
 VERSION: 0.1.4 10/18/19 - Modified the team7_misc2.php file so that it would display the tables and all their attributes using a function as opposed to hardcoding everything.
 VERSION: 0.1.5 10/20/19 - Updated the websites look.  Added buttons to all pages.
 VERSION: 0.1.6 10/23/19 - Removed old code that was commented out
+VERSION: 0.1.10 11/30/19 - RENAMED TO team7_showTables.php. Moved to admin page and therefore added back button to admin page.
 --->
 
 <!DOCTYPE html>
@@ -77,9 +78,17 @@ function display_table($table, $dbc)
 
 <br>
 <br>
-<br>
-<br>
 
+<body>
+
+<a href = "team7_admin.php" class="button button_back">BACK</a>
+
+</body>
+
+<br>
+<br>
+<br>
+<br>
 
 <div class = "footer">
 	<?php include 'included.php'; #included file contains the version number?>
