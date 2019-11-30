@@ -1,6 +1,9 @@
-<!---
-VERSION: 0.1.6 Creation of file.  Displays the contents of each table upon clicking on from admin page
+<?php
+	session_start();
+?>
 
+<!---
+VERSION: 0.1.10 Creation of file.  This file displays the items and is where the items to match are chosen.
 --->
 <!DOCTYPE html>
 <html>
@@ -24,41 +27,28 @@ VERSION: 0.1.6 Creation of file.  Displays the contents of each table upon click
 
 </head>
 
-
 <?php
-
-	include("../../connect_db.php");
-	$PassedArg = $_GET["Table"];
-	$matchedQuery = FALSE;
-	if($PassedArg == '7matched')
-		{
-			$PassedArg = '7items';
-			$matchedQuery = TRUE;
-		}
-		
-	$q = 'EXPLAIN '.$PassedArg.";";
+	$_SESSION["lostID1"]="-999";
+	
+	include ("..\..\connect_db.php");
+	
+	$q = 'EXPLAIN 7items';
 	$r = mysqli_query($dbc, $q);	
 	
 	echo "<center><table border = 1px solid black;>"; 
-	echo "<caption><p3> $PassedArg </p3></caption> ";
-	
-	while($row2 = mysqli_fetch_array($r, MYSQLI_NUM))
+	echo "<caption><p3> Unmatched Items </p3></caption> ";
+	$columnAmount = 0; #don't want the matchID and match_time column to appear
+	while($row2 = mysqli_fetch_array($r, MYSQLI_NUM) AND $columnAmount < 9)
 	{
 		echo '<th><p4>'.$row2[0].'</p4></th>';
+		$columnAmount++;
 	}
 	echo '<tr>';
-	if($matchedQuery)
-		{
-			$q2 = 'SELECT * FROM 7items 
-			WHERE matchID IS NOT NULL ORDER BY matched_time';
-		}
-	if(!$matchedQuery)
-		{
-			$q2 = 'SELECT * FROM '.$PassedArg.';';
-		}
-	$r2 = mysqli_query($dbc,$q2);
-	
-	while($row = mysqli_fetch_array($r2, MYSQLI_NUM))
+	$q = 'SELECT lost_id, cwid, lost_location, insideOrOutside, floorNumber, item_type, description, user_status, date_lost  
+		  FROM 7items WHERE matchID IS NULL';
+	$r = mysqli_query($dbc, $q);
+
+	while($row = mysqli_fetch_array($r, MYSQLI_NUM))
 	{
 		$column = array_keys($row);
 		$columnCount = count($column);
@@ -66,10 +56,12 @@ VERSION: 0.1.6 Creation of file.  Displays the contents of each table upon click
 		{
 			echo '<td><p5>'.$row[$i].'</p5></td>';
 		}
+		echo "<td><p5> <a href='7itemMatchUpdate.php?lost_id=".$row[0]."' class='button button_match'> SELECT </a>"
+			 .  "</p5></td>";
 		echo "</tr>";
 	}
 	echo"</table>";
-	
+
 ?>
 
 <br>

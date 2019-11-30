@@ -9,6 +9,8 @@ VERSION: 0.1.6 10/23/19 - Created the admins page. Added 6 links to display admi
 VERSION: 0.1.7 11/6/19 - Added new link in header to report an item. Added links in admin page to add a user or building. 
 VERSION: 0.1.8 11/27/19 - Added team7_login.php and team7_logout.php such that admins can log in or out.  Adjusted team7_admin.php so that an admin has to be logged in to view the functions available.  Added sign in/out option to header
 VERSION: 0.1.9 11/29/19 - Removed warning messages from team7_login.php and hashed passwords and changed query to check for unhashed or hashed passwords.  Hashed passwords before entering into table in 7usersTableInsert.php. 
+VERSION: 0.1.10 11/30/19 - RENAMED team7_misc2.php to team7_showTables.php.  Added 7itemMatch.php, 7itemMatchUpdate.php, 7itemMatchUpdate2.php, and 7doMatch.php.  Updated style sheet. showTables and Functional Diagram from header to admin page.  Added match items button to admin page.  With addition of four new files, admin can match two items together and the items table gets updated accordingly.
+VERSION: 0.1.11 11/30/19 - Locked all pages that require admin access.  
 --->
 
 <!DOCTYPE html>

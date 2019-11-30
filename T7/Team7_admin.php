@@ -8,12 +8,22 @@ session_start();
 		{
 			$loginstatus="";
 		}
+	if (isset($_SESSION["lostID1"]))
+		{ 
+			$lostID1=$_SESSION["lostID1"];
+		}
+	else 
+		{
+			$lostID1="";
+		}
+		
 ?>
 
 <!---
 VERSION: 0.1.6 Created the admins page. Added 6 links to display administrator information.
 VERSION: 0.1.7 Added buttons to add users or buildings
 VERSION: 0.1.8 Added login such that a user must be logged in to see admin functions
+VERSION: 0.1.10 Added button to view and match unmatched items. Added functional diagram button.
 --->
 
 <!DOCTYPE html>
@@ -40,6 +50,7 @@ VERSION: 0.1.8 Added login such that a user must be logged in to see admin funct
 
 
 <?php
+
 echo'<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">';
 
 if($loginstatus == 'NOT LOGGED IN')
@@ -51,13 +62,19 @@ else if($loginstatus == 'LOGGED IN')
 		echo'<center>';
 		echo'<br>';
 		echo'<a href = "team7_connection.php?" class="button">Check Connection</a>'; 
-		echo'<a href = "team7_misc2.php?" class="button">Display Tables</a> <br><br><br><br><br>';
+		echo'<a href = "team7_showTables.php?" class="button">Display Tables</a> ';
+		echo'<a href = "functionaldiagram.jpg" class="button">Functional Diagram</a>'; 
+		echo '<br><br><br><br><br>';
 		echo'<a href="DisplayTables.php?Table=7change" class="button">Display Change Log</a> ';
 		echo'<a href="DisplayTables.php?Table=7buildings" class="button">Display Buildings</a>  ';
 		echo'<a href="DisplayTables.php?Table=7items" class="button">Display Items</a> '; 
-		echo'<a href="DisplayTables.php?Table=7users" class="button">Display Users</a> <br><br><br><br><br>';
+		echo'<a href="DisplayTables.php?Table=7users" class="button">Display Users</a> ';
+		echo'<br><br><br><br><br>';
 		echo'<a href = "7usersTableInsert.php?" class="button">Add User</a> ';
 		echo'<a href = "7buildingsTableInsert.php?" class="button">Add Building</a> ';
+		echo'<br><br><br><br><br>';
+		echo'<a href = "7itemMatch.php?" class="button">Unmatch Items</a> ';
+		echo'<a href="DisplayTables.php?Table=7matched" class="button">Display Matched Items</a> ';
 		echo'</center>';
 	}
 
@@ -65,6 +82,8 @@ else if($loginstatus == 'LOGGED IN')
 ?>
 
 
+<br>
+<br>
 <br>
 <br>
 

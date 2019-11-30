@@ -1,6 +1,7 @@
 <!---
 VERSION: 0.1.0 10/1/19 - Created team7_connection.php.  Tested connection and added link to misc page
 VERSION: 0.1.5 10/20/19 - Modified to match new CSS file and included header. Also added error message if connection failed
+VERSION: 0.1.10 11/30/19 - Moved to admin page and therefore added back button to admin page.
 --->
 
 <!DOCTYPE html>
@@ -56,6 +57,15 @@ VERSION: 0.1.5 10/20/19 - Modified to match new CSS file and included header. Al
 	}
 	
 ?>
+
+</body>
+
+<br>
+<br>
+
+<body>
+
+<a href = "team7_admin.php" class="button button_back">BACK</a>
 
 </body>
 

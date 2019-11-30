@@ -9,6 +9,7 @@ VERSION: 0.1.6 10/23/19 - 0.1.6 - Updated change log
 VERSION: 0.1.7 11/06/19 - 0.1.7 - Updated change log, changed fields for buildings table
 VERSION: 0.1.8 11/27/19 - 0.1.8 - Updated change log
 VERSION: 0.1.9 11/29/19 - 0.1.9 - Updated change log, changed char legnth for passwords in user table for hashed passwords
+VERSION: 0.1.10 11/30/19 - 0.1.10 - Updated change log.  Added matchID and match_time to items.
 */
 
 DROP TABLE 7users;
@@ -65,7 +66,9 @@ floorNumber INTEGER,
 item_type SET("Clothing", "Electronics", "Books", "Wallets/Keys/ID", "Misc.", "Rideables") NOT NULL,
 description TEXT NOT NULL,
 user_status SET("Loser", "Finder") NOT NULL,
-date_lost DATE NOT NULL
+date_lost DATE NOT NULL,
+matchID INT,
+matched_time DATETIME
 );
 INSERT INTO 7items(cwid, lost_location, item_type, description, user_status, date_lost)
 VALUES(20099770, "Cannavino Library", "Electronics", "This is a test item.", "Loser", '2019-09-26');
@@ -113,10 +116,12 @@ We tested connection and added a link to misc page - Team7_misc.php only allowed
  "Added 3 new php files (7buildingsTableInsert, 7itemsTableInsert, 7usersTableInsert) that allow for the database to be modified via forms.  Created new button on header to report lost items, created two buttons on admin page to get to 7buildings... and 7users..."),
  
  ("0.1.8", '2019/11/27', "Joseph",
- "Added team7_login.php and team7_logout.php such that admins can log in or out.  Adjusted team7_admin.php so that an admin has to be logged in to view the functions available.  Added sign in/out option to header."), 
+ "In 7itemsTableInsert.php, updated location part of form such that it pulls from the buildings table.  Added box to enter floor or outsideAdded team7_login.php and team7_logout.php such that admins can log in or out.  Adjusted team7_admin.php so that an admin has to be logged in to view the functions available.  Added sign in/out option to header."), 
   
  ("0.1.9", '2019/11/29', "Joseph",
- "Removed warning messages from team7_login.php and hashed passwords and changed query to check for unhashed or hashed passwords.  Hashed passwords before entering into table in 7usersTableInsert.php.  ") 
+ "Removed warning messages from team7_login.php and hashed passwords and changed query to check for unhashed or hashed passwords.  Hashed passwords before entering into table in 7usersTableInsert.php.  ") ,
  
+ ("0.1.10", '2019/11/30', "Joseph",
+ "RENAMED team7_misc2.php to team7_showTables.php.  Added 7itemMatch.php, 7itemMatchUpdate.php, 7itemMatchUpdate2.php, and 7doMatch.php.  Updated style sheet. showTables and Functional Diagram from header to admin page.  Added match items button to admin page.  With addition of four new files, admin can match two items together and the items table gets updated accordingly.") 
  ;   
 
