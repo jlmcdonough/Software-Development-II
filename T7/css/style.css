@@ -213,7 +213,7 @@ table td {
 }
 
 /*Admin Page buttons */
-.button {
+.button{
 	background-color:rgb(124,124,128);
 	border: none;
 	color: white;
@@ -234,4 +234,17 @@ table td {
 .button_back {
 	padding: 5px;
 	font-size:20px;
+}
+
+/* Match Items Button */
+.button_match{
+  	background-color:#b31b1b;
+	border-radius:28px;
+	color:#ffffff;
+	padding:6px 6px;
+	text-decoration:none;
+	}	
+.button_match:hover {
+	background-color: white;
+	color: #b31b1b;
 }
