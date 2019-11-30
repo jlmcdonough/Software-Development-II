@@ -1,5 +1,6 @@
 <!-- 
 VERSION: 0.1.7 - Creation of file. Displays form that allows new items to be added to database
+VERSION: 0.1.8 - Updated location part of form such that it pulls from the buildings table.  Added box to enter floor or outside
 -->
 
 <!DOCTYPE html>
@@ -40,11 +41,16 @@ else{                                          #if no connect_db file
 $autofocus = array(1=>"",2=> "",3=> "");
 
 #assign passed arguents to varibales 
-$cwid=$location=$item_type=$description=$status=$date_lost="";
+$cwid=$location=$item_type=$description=$status=$date_lost=$inOrOut="";
+$floorNumber=-999;
 if (isset($_POST['CWID']))
 	{$cwid = $_POST['CWID'];} 
 if (isset($_POST['location']))
 	{$location = $_POST['location'];}
+if (isset($_POST['inOrOut']))
+	{$inOrOut = $_POST['inOrOut'];}
+if (isset($_POST['floorNumber']))
+	{$floorNumber = $_POST['floorNumber'];}
 if (isset($_POST['Item_Type']))
 	{$item_type = $_POST['Item_Type'];} 	
 if (isset($_POST['Description']))
@@ -85,58 +91,47 @@ if ($errormessage!="")
    {echo "<center><p7> $errormessage! </p7>";} 
 
 #Create the handler
+
 if (($_SERVER['REQUEST_METHOD'] != 'POST') or ($errormessage<>"")){	
-echo "<center>";
-echo "<h2> Form for table 7items  </h2>";
-echo "<form action = '7itemsTableInsert.php' method = 'POST'>";
-echo "<fieldset style='background-color:rgb(124,124,128);'>";
-echo "<p1>CWID <br> <input type = 'text' name = 'CWID' value = '$cwid' maxlength = 8 .$autofocus[1]></p1>";
 
-echo "<br>";
-echo "<br>";
+		# query table to get list of userids 
+		$buildingQuery = "SELECT name FROM 7buildings";
+		$buildingPointer = mysqli_query($dbc, $buildingQuery ); 
+		
+		#$element=0;
+		while($row = mysqli_fetch_array($buildingPointer,MYSQLI_NUM ))	
+			{
+				$buildingList[]=$row[0];
+			}
+		  
+	echo "<center>";
+	echo "<h2> Form for table 7items  </h2>";
+	echo "<form action = '7itemsTableInsert.php' method = 'POST'>";
+	echo "<fieldset style='background-color:rgb(124,124,128);'>";
+	echo "<p1>CWID <br> <input type = 'text' name = 'CWID' value = '$cwid' maxlength = 8 .$autofocus[1]></p1>";
 
-echo "<p1>Location<br> ";
-echo"<select name='location' size='6'>";
-	echo"<option value='byrne'>Byrne House</option>";
-	echo"<option value='cannavino'>Cannavino Library</option>";
-	echo"<option value='champagnat'>Champagnat Hall</option>";
-	echo"<option value='chapel'>Chapel</option>";
-	echo"<option value='cornellBoathouse'>Cornell Boathouse</option>";
-	echo"<option value='donnely'>Donnely Hall</option>";
-	echo"<option value='dyson'>Dyson Center</option>";
-	echo"<option value='fern'>Fern Tor</option>";
-	echo"<option value='fontaine'>Fontaine Hall</option>";
-	echo"<option value='foy'>Foy Townhouses</option>";
-	echo"<option value='lowerFulton'>Lower Fulton Townhouses</option>";
-	echo"<option value='upperFulton'>Upper Fulton Townhouses</option>";
-	echo"<option value='greystone'>Greystone Hall</option>";
-	echo"<option value='hancock'>Hancock Center</option>";
-	echo"<option value='kieran'>Kieran Greystone</option>";
-	echo"<option value='kirk'>Kirk House</option>";
-	echo"<option value='leo'>Leo Hall</option>";
-	echo"<option value='longview'>Longview Park</option>";
-	echo"<option value='lowell'>Lowell Thomas</option>";
-	echo"<option value='lower'>Lower New Townhouses</option>";
-	echo"<option value='marian'>Marian Hall</option>";
-	echo"<option value='maristBoathouse'>Marist Boathouse</option>";
-	echo"<option value='mccann'>McCann Center</option>";
-	echo"<option value='mid-rise'>Mid-Rise Hall</option>";
-	echo"<option value='northCampus'>North Campus Housing Complex</option>";
-	echo"<option value='stAnn'>St. Ann's Hermitage</option>";
-	echo"<option value='stPeter'>St. Peter's</option>";
-	echo"<option value='health'>Science and Allied Heatlh Building</option>";
-	echo"<option value='sheahan'>Sheahan Hall</option>";
-	echo"<option value='steelPlant'>Steel Plant Studios and Gallery</option>";
-	echo"<option value='studentCenter'>Student Center</option>";
-	echo"<option value='lowerCedar'>Lower West Cedar Townhouses</option>";
-	echo"<option value='upperCedar'>Upper West Cedar Townhouses</option>";
-	echo"<option value='diningHall'>Dining Hall</option>";
-echo"</select>";
-echo "</p1>";
+	echo "<br>";
+	echo "<br>";
+		echo "<p1> Location<br> <select name='location'>          </p1>";
+		for ($i=0;$i<count($buildingList);$i++)
+			{
+				echo "<option value='" . $buildingList[$i] . "'>" . $buildingList[$i] ."</option>";
+			}
+		echo "          </select>         </p1>"; 
+	
+	echo "<br>";
+	echo "<br>";
+	
+	echo "<input type = 'radio' name ='inOrOut' value = 'outside'><p1>Outside</p1><br>";
+	echo "<input type = 'radio' name ='inOrOut' value = 'inside'><p1>Inside</p1><br>";
+	
+	echo "<br>";
+	
+	echo "<p1>floor number (-1 = basement)</p1> <input type = 'number' name = 'floorNumber' value = '$floorNumber'>";
 
-echo "<br>";
-echo "<br>";
-
+	echo "<br>";
+	echo "<br>";
+	
 echo "<p1>Item Type<br>";
 echo "<select name='Item_Type'>";
 	echo "<option value='Clothing'>Clothing</option>";
@@ -186,9 +181,19 @@ else{
 		echo "<br> <p1>$ThisKey</p1>";
 	}
 	
-	$q  = "INSERT into 7items (cwid, item_type, description, user_status, date_lost, lost_location)
-			Values($cwid, '$item_type', '$description', '$status', '$date_lost', '$location')";
+	
+	if($inOrOut == 'inside')
+		{
+	$q  = "INSERT into 7items (cwid, item_type, description, user_status, date_lost, lost_location, insideOrOutside, floorNumber)
+			Values($cwid, '$item_type', '$description', '$status', '$date_lost', '$location', '$inOrOut', $floorNumber)";
 	$r = mysqli_query($dbc, $q);
+		}
+	if($inOrOut == 'outside')
+	{
+			$q  = "INSERT into 7items (cwid, item_type, description, user_status, date_lost, lost_location, insideOrOutside)
+			Values($cwid, '$item_type', '$description', '$status', '$date_lost', '$location', '$inOrOut')";
+	$r = mysqli_query($dbc, $q);
+	}
 	
 	if ($r == false){
 		echo "<p1>DBC error </p1>" .mysqli_error($dbc);
