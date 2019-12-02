@@ -47,16 +47,16 @@ minFloor int,
 maxFloor int
 );
 
-INSERT INTO 7buildings(name)
-VALUES("Byrne House"), ("Cannavino Library"), ("Champagnat Hall"), ("Chapel"), ("Cornell Boathouse"),
-("Donnely Hall"), ("Dyson Center"), ("Fern Tor"),("Fontaine Hall"), ("Foy Townhouses"),
-("Lower Fulton Townhouses"), ("Upper Fulton Townhouses"), ("Greystone Hall"), ("Hancock Center"),
-("Kieran Gatehouse"), ("Kirk House"), ("Leo Hall"), ("Longview Park"), 
-("Lowell Thomas Communications Center"), ("Lower Townhouses"), ("Marian Hall"), ("Marist Boathouse"),
-("McCann Center"), ("Mid-Rise Hall"), ("North Campus Housing Complex"), ("St. Ann's Hermitage"),
-("St. Peters's"), ("Science and Allied Health Building"), ("Sheahan Hall"),
-("Steel Plant Studios and Gallery"), ("Student Center"),("Lower West Cedar Townhouses"),
-("Upper West Cedar Townhouses"), ("Dining Hall");
+INSERT INTO 7buildings (name, minFloor, maxFloor)
+VALUES("Byrne House", 1, 1), ("Cannavino Library",1,3), ("Champagnat Hall",1,9), ("Chapel",1,1), ("Cornell Boathouse",1,2),
+("Donnely Hall",-1,2), ("Dyson Center",-1,2), ("Fern Tor",0,0),("Fontaine Hall",1,3), ("Foy Townhouses",1,2),
+("Lower Fulton Townhouses",1,3), ("Upper Fulton Townhouses",1,3), ("Greystone Hall",-1,2), ("Hancock Center",-1,3),
+("Kieran Gatehouse",1,1), ("Kirk House",1,1), ("Leo Hall",-1,5), ("Longview Park",0,0), 
+("Lowell Thomas Communications Center",-1,2), ("Lower Townhouses",1,2), ("Marian Hall",1,2), ("Marist Boathouse",-1,1),
+("McCann Center",1,3), ("Mid-Rise Hall",1,5), ("North Campus Housing Complex",-1,4), ("St. Ann's Hermitage",-1,2),
+("St. Peters's",1,1), ("Science and Allied Health Building",1,3), ("Sheahan Hall",-1,3),
+("Steel Plant Studios and Gallery",1,2), ("Student Center",2,3),("Lower West Cedar Townhouses",1,2),
+("Upper West Cedar Townhouses",1,2), ("Dining Hall",1,1);
 
 CREATE TABLE if not exists 7items(
 lost_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -126,6 +126,9 @@ We tested connection and added a link to misc page - Team7_misc.php only allowed
  "RENAMED team7_misc2.php to team7_showTables.php.  Added 7itemMatch.php, 7itemMatchUpdate.php, 7itemMatchUpdate2.php, and 7doMatch.php.  Updated style sheet. showTables and Functional Diagram from header to admin page.  Added match items button to admin page.  With addition of four new files, admin can match two items together and the items table gets updated accordingly."), 
  
  ("0.1.11", '2019/11/30', "Joseph",
- "Locked all admin pages behind admin access.  Those users not logged in cannot access any of its contents.")
+ "Locked all admin pages behind admin access.  Those users not logged in cannot access any of its contents."),
+ 
+ ("0.1.12", '2019/12/04', "All",
+ "Improved all forms, increased error-checking, and ensured fields were sticky")
  ;   
 
