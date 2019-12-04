@@ -53,11 +53,8 @@ VERSION: 0.1.10 Added button to view and match unmatched items. Added functional
 
 echo'<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">';
 
-if($loginstatus == 'NOT LOGGED IN')
-	{
-		echo'<center><p1>PLEASE LOGIN TO VIEW   </p1><div class="grow"><a href="team7_login.php" target="_blank" style="color:white; font-size:25px;"><i class="fas fa-user-lock"></i></a></div>';
-	}
-else if($loginstatus == 'LOGGED IN')
+
+if($loginstatus == 'LOGGED IN')
 	{
 		echo'<center>';
 		echo'<br>';
@@ -73,11 +70,14 @@ else if($loginstatus == 'LOGGED IN')
 		echo'<a href = "7usersTableInsert.php?" class="button">Add User</a> ';
 		echo'<a href = "7buildingsTableInsert.php?" class="button">Add Building</a> ';
 		echo'<br><br><br><br><br>';
-		echo'<a href = "7itemMatch.php?" class="button">Unmatch Items</a> ';
-		echo'<a href="DisplayTables.php?Table=7matched" class="button">Display Matched Items</a> ';
+		echo'<a href = "7itemMatch.php?" class="button">Match Items</a> ';
+		echo'<a href="DisplayTables.php?Table=7matched" class="button">Display Already Matched Items</a> ';
 		echo'</center>';
 	}
-
+else
+	{
+		echo'<center><p1>PLEASE LOGIN TO VIEW   </p1><div class="grow"><a href="team7_login.php" target="_blank" style="color:white; font-size:25px;"><i class="fas fa-user-lock"></i></a></div>';
+	}
 
 ?>
 

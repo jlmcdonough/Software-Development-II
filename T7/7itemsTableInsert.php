@@ -1,6 +1,7 @@
 <!-- 
-VERSION: 0.1.7 - Creation of file. Displays form that allows new items to be added to database
-VERSION: 0.1.8 - Updated location part of form such that it pulls from the buildings table.  Added box to enter floor or outside
+VERSION: 0.1.7 11/6/19 - Creation of file. Displays form that allows new items to be added to database
+VERSION: 0.1.8 11/7/19 - Updated location part of form such that it pulls from the buildings table.  Added box to enter floor or outside
+VERSION: 0.1.12 12/1/19 - Increased error checking
 -->
 
 <!DOCTYPE html>
@@ -35,14 +36,9 @@ else{                                          #if no connect_db file
 	echo "<p1 style = font-size:30px><center> Cannot connect to the database!  </p1>";
 }
 
-
-	
-#create autofocus variable to set autofocus
-$autofocus = array(1=>"",2=> "",3=> "");
-
 #assign passed arguents to varibales 
 $cwid=$location=$item_type=$description=$status=$date_lost=$inOrOut="";
-$floorNumber=-999;
+$floorNumber="";
 if (isset($_POST['CWID']))
 	{$cwid = $_POST['CWID'];} 
 if (isset($_POST['location']))
@@ -62,13 +58,19 @@ if (isset($_POST['Date_Lost']))
 
 # Check input fields for  errors 
 $errormessage="";
+$dateYear = substr($date_lost, 0, 4);
+$dateMonth = substr($date_lost, 5, 2);
+$dateDay = substr($date_lost, 8, 2);
+
 if ($cwid.$location.$item_type.$description.$status.$date_lost=="")
 	{$errormessage = "ENTER ALL THE INFO AND PRESS SUBMIT";}
 
 elseif (empty($_POST['CWID']))
-   {$errormessage="ENTER YOUR CWID";
-	$autofocus[1] = "autofocus";}
+   {$errormessage="ENTER YOUR CWID";}
 
+elseif (empty($_POST['inOrOut']))
+	{$errormessage = "Select Inside or Outside";}
+	
 elseif (empty($_POST['location']))
 	{$errormessage="PLEASE SELECT THE LOCATION YOU LOST THE ITEM";}
 
@@ -76,19 +78,37 @@ elseif (empty($_POST['Item_Type']))
 	{$errormessage = "PLEASE CHOOSE THE ITEM TYPE";}
 
 elseif (empty($_POST['Description']))
-	{$errormessage = "PLEASE ENTER A DESCRIPTION";
-	$autofocus[2] = "autofocus";}
+	{$errormessage = "PLEASE ENTER A DESCRIPTION";}
 
 elseif (empty($_POST['Status']))
 	{$errormessage = "PLEASE SET YOUR STATUS";}
 
 elseif (empty($_POST['Date_Lost']))
-	{$errormessage = "PLEASE ENTER THE DATE LOST";
-	$autofocus[3] = "autofocus";}
+	{$errormessage = "PLEASE ENTER THE DATE LOST";}
+	
+elseif (ctype_digit($cwid) == false){
+	$errormessage = "Your CWID must only contain numbers";
+}
+	
+elseif ((ctype_digit($dateYear) == false) or (ctype_digit($dateMonth) == false) or (ctype_digit($dateDay) == false)){
+	$errormessage = "PLEASE ENTER A VALID DATE";
+}
+	
+elseif (($dateYear > date("Y")) or ($dateYear < (date("Y") - 1))){
+	$errormessage = "PLEASE ENTER A VALID YEAR";
+}
+	
+elseif(($dateMonth < 1) or ($dateMonth > 12)){
+	$errormessage = "PLEASE ENTER A VALID MONTH";
+}
+	
+elseif (($dateDay < 1) or ($dateDay > 31)){
+	$errormessage = "PLEASE ENTER A VALID DAY";
+}
 	
 echo "<br>";
 if ($errormessage!="")
-   {echo "<center><p7> $errormessage! </p7>";} 
+   {echo "<center><p7> $errormessage! </p7>";}  
 
 #Create the handler
 
@@ -108,7 +128,7 @@ if (($_SERVER['REQUEST_METHOD'] != 'POST') or ($errormessage<>"")){
 	echo "<h2> Form for table 7items  </h2>";
 	echo "<form action = '7itemsTableInsert.php' method = 'POST'>";
 	echo "<fieldset style='background-color:rgb(124,124,128);'>";
-	echo "<p1>CWID <br> <input type = 'text' name = 'CWID' value = '$cwid' maxlength = 8 .$autofocus[1]></p1>";
+	echo "<p1>CWID <br> <input type = 'text' name = 'CWID' value = '$cwid' minlength = 8 maxlength = 8></p1>";
 
 	echo "<br>";
 	echo "<br>";
@@ -122,8 +142,8 @@ if (($_SERVER['REQUEST_METHOD'] != 'POST') or ($errormessage<>"")){
 	echo "<br>";
 	echo "<br>";
 	
-	echo "<input type = 'radio' name ='inOrOut' value = 'outside'><p1>Outside</p1><br>";
-	echo "<input type = 'radio' name ='inOrOut' value = 'inside'><p1>Inside</p1><br>";
+	echo "<input type = 'radio' name ='inOrOut' value = 'outside' ><p1>Outside</p1><br>";
+	echo "<input type = 'radio' name ='inOrOut' value = 'inside' }><p1>Inside</p1><br>";
 	
 	echo "<br>";
 	
@@ -137,36 +157,40 @@ echo "<select name='Item_Type'>";
 	echo "<option value='Clothing'>Clothing</option>";
 	echo "<option value='Electronics'>Electronics</option>";
 	echo "<option value='Books'>Books</option>";
-	echo "<option value='Wallet/Key/ID'>Wallet/Key/ID</option>";
-	echo "<option value='Other'>Other</option>";
+	echo "<option value='Wallets/Keys/ID'>Wallet/Key/ID</option>";
+	echo "<option value='Rideables'>Rideables</option>";
+	echo "<option value='Misc.'>Miscellaneous</option>";
 echo "</select>";
 echo "</p1>";
 
 echo "<br>";
 echo "<br>";
 
-echo "<p1>Description<br> <textarea rows = '5' cols = '20' name = 'Description' value = '$description' .$autofocus[2]></textarea></p1>";
+echo '<p1>Description<br> <textarea rows = "5" cols = "20" name = "Description" value = "$description">' ;
+echo "$description"; 
+echo'</textarea></p1>';
 
 echo "<br>";
 echo "<br>";
 
 echo "<p1>Status<br>";
 echo "<select name='Status'>";
-	echo "<option value='Loser'>Loser</option>";
-	echo "<option value='finder'>Finder</option>";
+	echo "<option value='loser'>Loser</option>";
+	echo "<option value='finder' >Finder</option>";
 echo "</select>";
 echo "</p1>";
 
 echo "<br>";
 echo "<br>";
 
-echo "<p1>Date Lost (yyyy-mm-dd)<br> <input type = 'text' name = 'Date_Lost' value = '$date_lost' .$autofocus[3]></p1>";
+echo "<p1>Date Lost <br> <input type = 'date' name = 'Date_Lost' value = '$date_lost'></p1>";
+
 
 echo "<br>";
 echo "<br>";
 
 echo "</fieldset>";
-echo "<p><input type = 'Submit'></p>";
+echo"<p3 style='display:block; text-align:center'><input type = 'Submit'></p3>";
 echo "</form>";
 }
 
@@ -203,10 +227,15 @@ else{
 	echo "<br><p1> User table updated; added $cwid, $item_type, $description, $status, $date_lost, $location</p1>";
 }
 
+
+echo "<br>";
+echo "<br>";
+echo'<a href = "team7.php" class="button button_back">HOME</a>';
+
 echo "<br>";
 echo "<br>";
 echo "<p7>This page was created by Chris Pellerito</p7>";
-echo "</center>";
+
 echo "<br>";
 echo "<br>";
 echo "<br>";

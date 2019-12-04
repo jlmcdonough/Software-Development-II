@@ -3,14 +3,15 @@ VERSION: 0.1.0 10/1/19 - Created first three tables and added some test values i
 VERSION: 0.1.1 10/3/19 - Updated change log
 VERSION: 0.1.2 10/7/19 - Updated change log
 VERSION: 0.1.3 10/14/19 - Created 7change table and inserted values.  Updated change log
-VERSION: 0.1.4 10/18/19 - 0.1.4 - Updated change log
-VERSION: 0.1.5 10/20/19 - 0.1.5 - Updated change log
-VERSION: 0.1.6 10/23/19 - 0.1.6 - Updated change log
-VERSION: 0.1.7 11/06/19 - 0.1.7 - Updated change log, changed fields for buildings table
-VERSION: 0.1.8 11/27/19 - 0.1.8 - Updated change log
-VERSION: 0.1.9 11/29/19 - 0.1.9 - Updated change log, changed char legnth for passwords in user table for hashed passwords
-VERSION: 0.1.10 11/30/19 - 0.1.10 - Updated change log.  Added matchID and match_time to items.
-VERSION: 0.1.11 11/30/19 - 0.1.11 - Updated change log.
+VERSION: 0.1.4 10/18/19 - Updated change log
+VERSION: 0.1.5 10/20/19 - Updated change log
+VERSION: 0.1.6 10/23/19 - Updated change log
+VERSION: 0.1.7 11/06/19 - Updated change log, changed fields for buildings table
+VERSION: 0.1.8 11/27/19 - Updated change log
+VERSION: 0.1.9 11/29/19 - Updated change log, changed char legnth for passwords in user table for hashed passwords
+VERSION: 0.1.10 11/30/19 - Updated change log.  Added matchID and match_time to items.
+VERSION: 0.1.11 11/30/19 - Updated change log.
+VERSION: 0.1.12 12/04/19 - Updated change log.
 */
 
 DROP TABLE 7users;
@@ -91,35 +92,35 @@ change_made TEXT
 );
 
 INSERT INTO 7change(version, date_of, person, change_made)
-VALUES("0.1.0",'2019/10/1', "All", "Created all pages- Team7_misc.php, Team7.php, Team7_connection.php - Team7_connection.php 
+VALUES("0.1.00",'2019/10/1', "All", "Created all pages- Team7_misc.php, Team7.php, Team7_connection.php - Team7_connection.php 
 We tested connection and added a link to misc page - Team7_misc.php only allowed in if connection was aprovced also
  show list and database as well as link all pages"), 
  
- ("0.1.1", '2019/10/3', "Matt and Joseph", "UPDATED INFO on landing page - 
+ ("0.1.01", '2019/10/3', "Matt and Joseph", "UPDATED INFO on landing page - 
  Added Comments IN team7_misc.php we restored the connection to the database and got all the back buttons working correctly"), 
  
-("0.1.2", '2019/10/7', "All", "Created Contact Info, added a show tables link that shows the current data in the tables
+("0.1.02", '2019/10/7', "All", "Created Contact Info, added a show tables link that shows the current data in the tables
  and added version and date to the bottom left of the screen added functional diagram to the misc page"),
  
- ("0.1.3", '2019/10/14', "All", 
+ ("0.1.03", '2019/10/14', "All", 
  "Created the changes table and added all changes that we have made."),
  
- ("0.1.4", '2019/10/17', "Matt and Joseph",
+ ("0.1.04", '2019/10/17', "Matt and Joseph",
  "Modified the team7_misc2.php file so that it would display the tables and all their attributes using a function as opposed to hardcoding everything."),
  
- ("0.1.5", '2019/10/20', "Joseph",
+ ("0.1.05", '2019/10/20', "Joseph",
  "Added a style sheet for all styles.  Redid the website look.  Added buttons to top of all pages. "),
  
- ("0.1.6", '2019/10/23', "All",
+ ("0.1.06", '2019/10/23', "All",
  "Edited style sheet to center the navbar.  Added an Admin Page link on the misc. page. Created 6 admin functions (check connection, show table definitions, display all change, building, item, and user table). Created new displaytables.php to display the tables and their contents."),
  
- ("0.1.7", '2019/11/06', "All",
+ ("0.1.07", '2019/11/06', "All",
  "Added 3 new php files (7buildingsTableInsert, 7itemsTableInsert, 7usersTableInsert) that allow for the database to be modified via forms.  Created new button on header to report lost items, created two buttons on admin page to get to 7buildings... and 7users..."),
  
- ("0.1.8", '2019/11/27', "Joseph",
+ ("0.1.08", '2019/11/27', "Joseph",
  "In 7itemsTableInsert.php, updated location part of form such that it pulls from the buildings table.  Added box to enter floor or outsideAdded team7_login.php and team7_logout.php such that admins can log in or out.  Adjusted team7_admin.php so that an admin has to be logged in to view the functions available.  Added sign in/out option to header."), 
   
- ("0.1.9", '2019/11/29', "Joseph",
+ ("0.1.09", '2019/11/29', "Joseph",
  "Removed warning messages from team7_login.php and hashed passwords and changed query to check for unhashed or hashed passwords.  Hashed passwords before entering into table in 7usersTableInsert.php.  ") ,
  
  ("0.1.10", '2019/11/30', "Joseph",

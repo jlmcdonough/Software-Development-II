@@ -83,23 +83,35 @@ $autofocus = array(1=>"",2=> "",3=> "");
     if (empty($_POST['cwid']))	
    { $errormessage="ENTER A CWID";
    } 
-    if (empty($_POST['firstName']))	
+   elseif (empty($_POST['firstName']))	
    { $errormessage="ENTER FIRST NAME";
    } 
-    if (empty($_POST['lastName']))	
+    elseif (empty($_POST['lastName']))	
    { $errormessage="ENTER LASR NAME";
    } 
-	if (empty($_POST['email']))	
+	elseif (empty($_POST['email']))	
    { $errormessage="ENTER AN EMAIL";
    } 
-	if (empty($_POST['password']))	
+	elseif (empty($_POST['password']))	
    { $errormessage="ENTER A PASSWORD";
    } 
-	if (empty($_POST['phone']))	
+	elseif (empty($_POST['phone']))	
    { $errormessage="ENTER A PHONE NUMBER";
    } 
-  if ($errormessage!="")
+   	elseif(null == (strpos("$email", "@")))
+	{
+		$errormessage = "EMAIL MUST CONTAIN AN '@' CHARACTER";
+	}
+	elseif (ctype_digit("$cwid") == false)
+	{
+		$errormessage = "Your CWID must only contain numbers";
+	}
+	
+	
+	if ($errormessage!="")
       {echo "<center><p7> $errormessage! </p7>";} 
+
+	
 
    
 If (($_SERVER['REQUEST_METHOD'] != 'POST')  OR ($errormessage<>""))
@@ -109,7 +121,7 @@ If (($_SERVER['REQUEST_METHOD'] != 'POST')  OR ($errormessage<>""))
 	echo '<form action="7usersTableInsert.php" method="POST">';
 	echo "<fieldset style='background-color:rgb(124,124,128);'>";
 	echo '<p1>CWID</p1><br>';
-	echo '<input type="text" name="cwid">';
+	echo "<input type = 'text' name = 'cwid' value = '$cwid' minlength = 8 maxlength = 8></p1>";
 	
 	echo "<br>";
 	echo "<br>";
@@ -128,6 +140,7 @@ If (($_SERVER['REQUEST_METHOD'] != 'POST')  OR ($errormessage<>""))
 	
 	echo'<p1>Email</p1><br>';
 	echo'<input type="text" name="email">';
+	
 	
 	echo "<br>";
 	echo "<br>";
@@ -155,26 +168,42 @@ If (($_SERVER['REQUEST_METHOD'] != 'POST')  OR ($errormessage<>""))
 if($errormessage == "")
 {
 	$hashedpassword = hash(SHA256, $pass);
-	echo"$hashedpassword";
-$q = "INSERT INTO 7users (cwid, first_name, last_name, email, password, phone)
-      VALUES ('$cwid','$fname','$lname','$email','$hashedpassword','$phone')";
-$r = mysqli_query($dbc, $q ); 
-if ($r == false) 
-{ #echo "DBC Error " . mysqli_error($dbc); 
-  echo "<p1>Unable to insert into the table. Contact support!</p1>"; die; 
+	
+	#check for duplicate cwid
+	$cwidCheck = "SELECT cwid FROM 7users WHERE CWID = '$cwid'";
+	$r = mysqli_query($dbc, $cwidCheck);
+	
+	#if does not exists, insert
+	if(mysqli_num_rows($r)==0)
+	{
+		$q = "INSERT INTO 7users (cwid, first_name, last_name, email, password, phone)
+		VALUES ('$cwid','$fname','$lname','$email','$hashedpassword','$phone')";
+		$r = mysqli_query($dbc, $q ); 
+		if ($r == false) 
+			{ #echo "DBC Error " . mysqli_error($dbc); 
+				echo "<p1>Unable to insert into the table. Contact support!</p1>"; die; 
+			}
+		else
+			echo "<br> <p1>User Table updated;$cwid $fname $lname $email $hashedpassword $phone!</p1>";
+		echo"</center>";
+		
+		echo "<br> <p1>User table updated; added $name, $minFloor, $maxFloor </p1>";
+	} 
+	else
+	{
+		echo"<p1> This CWIDis already present in the 7users table. Did not add.";
+	}
+	echo "</center>";
 }
-else
-	echo "<br> <p1>User Table updated;$cwid $fname $lname $email $hashedpassword $phone!</p1>";
-} 
- echo"</center>";
-echo "<center><br> <p7>by Matthew Parisi</p7>";
+echo"<br>";
+		echo "<center><br> <p7>by Matthew Parisi</p7>";
 
 echo "<br>";
 echo "<br>";
 
 
-
-	echo'<a href = "team7_admin.php" class="button button_back">BACK</a>';
+	
+	echo'<center><a href = "team7_admin.php" class="button button_back">BACK</a></center>';
 
 	}
 
